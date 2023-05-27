@@ -11,13 +11,6 @@ const generateBoleto = async () => {
     zipCode: document.getElementById("zipCode").value,
     due: document.getElementById("due").value,
   };
-  // const res = await fetch("http://localhost:3000/api/v1/boleto", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(payload),
-  // })
   axios
     .post("http://localhost:3000/api/v1/boleto", {
       data: payload,
@@ -30,7 +23,6 @@ const generateBoleto = async () => {
     .catch(function (error) {
       console.error(error);
     });
-  // console.log(res.body.getReader().read())
 };
 
 const getBoletoPDF = (boletoId) => {
@@ -41,6 +33,7 @@ const getBoletoPDF = (boletoId) => {
         id: boletoId,
         email: document.getElementById("email").value
       }
+      console.log('PDF de boleto gerado')
       sendBoletoEmail(params);
     })
     .catch(function (error) {
